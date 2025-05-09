@@ -21,3 +21,4 @@ else
    echo "Docker Image adamtravis/democicd:latest has vulnerabilities!!"
    echo "============================================================="
 fi
+######
