@@ -12,10 +12,20 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 
-# Install Java 8, Java 11 & Docker
+# Install Java 8, 11, 17 & Docker
 apt update
-apt install -y openjdk-8-jdk openjdk-11-jdk docker.io maven
+apt install -y openjdk-8-jdk openjdk-11-jdk openjdk-17-jdk docker.io maven openssh-server
 usermod -a -G docker ubuntu
+
+# Set Java 17 as default
+update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+
+# Setup SSH for Jenkins agent
+mkdir -p /home/ubuntu/.ssh
+chmod 700 /home/ubuntu/.ssh
+touch /home/ubuntu/.ssh/authorized_keys
+chmod 600 /home/ubuntu/.ssh/authorized_keys
+chown -R ubuntu:ubuntu /home/ubuntu/.ssh
 
 # Install Trivy
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
