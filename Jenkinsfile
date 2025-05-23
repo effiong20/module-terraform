@@ -2,14 +2,14 @@
 pipeline {
   agent { label 'build' }
    environment { 
-        registry = "adamtravis/democicd" 
-        registryCredential = 'dockerhub' 
+        registry = "giftedid/democicd" 
+        registryCredential = 'dockercred' 
    }
 
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'main', credentialsId: 'GitlabCred', url: 'https://gitlab.com/learndevopseasy/devsecops/springboot-build-pipeline.git'
+        git branch: 'main', credentialsId: 'Githubcred', url: 'git@github.com:effiong20/module-terraform.git'
       }
     }
   
@@ -37,7 +37,7 @@ pipeline {
    stage('Stage IV: SAST') {
       steps { 
         echo "Running Static application security testing using SonarQube Scanner ..."
-        withSonarQubeEnv('mysonarqube') {
+        withSonarQubeEnv('sonar') {
             sh 'mvn sonar:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html -Dsonar.projectName=wezvatech'
        }
       }
@@ -72,7 +72,7 @@ pipeline {
    stage('Stage VII: Scan Image ') {
       steps { 
         echo "Scanning Image for Vulnerabilities"
-        sh "trivy image --scanners vuln --offline-scan adamtravis/democicd:latest > trivyresults.txt"
+        sh "trivy image --scanners vuln --offline-scan giftedid/democicd:latest > trivyresults.txt"
         }
     }
           
