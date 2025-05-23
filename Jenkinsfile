@@ -1,6 +1,6 @@
 
 pipeline {
-  agent { label 'build' }
+  agent { label 'build-server' }
    environment { 
         registry = "giftedid/democicd" 
         registryCredential = 'dockercred' 
@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'main', credentialsId: 'Githubcred', url: 'git@github.com:effiong20/module-terraform.git'
+        git branch: 'main', credentialsId: 'githubcred', url: 'git@github.com:effiong20/module-terraform.git'
       }
     }
   
