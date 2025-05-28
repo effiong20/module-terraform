@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'main', credentialsId: 'gitcred', url: 'git@github.com:effiong20/module-terraform.git'
+        git branch: 'master', credentialsId: 'githubcred', url: 'git@github.com:effiong20/module-terraform.git'
       }
     }
   
