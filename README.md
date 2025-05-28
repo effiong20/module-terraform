@@ -26,10 +26,10 @@ $ sudo ./setup.sh
 
 ## Step 3: Install Sonrqube on the t2.medium server
 ```
-$ sudo apt update
-$ sudo apt install -y docker.io
-$ sudo usermod -a -G docker ubuntu
-$ sudo docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
+sudo apt update
+ sudo apt install -y docker.io
+ sudo usermod -a -G docker ubuntu
+ sudo docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
 ```
 
 ## Step 4: Add necessary credentials

@@ -20,12 +20,7 @@ usermod -a -G docker ubuntu
 # Set Java 17 as default
 update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
 
-# Setup SSH and Jenkins workspace
-mkdir -p /home/ubuntu/.ssh /home/ubuntu/jenkins-agent
-chmod 700 /home/ubuntu/.ssh
-touch /home/ubuntu/.ssh/authorized_keys
-chmod 600 /home/ubuntu/.ssh/authorized_keys
-chown -R ubuntu:ubuntu /home/ubuntu/.ssh /home/ubuntu/jenkins-agent
+
 
 # Install Trivy
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
