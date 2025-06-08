@@ -1,6 +1,6 @@
 
 pipeline {
-  agent { label 'buildserver' }
+  agent { label 'slave-server' }
    environment { 
         registry = "giftedid/democicd" 
         registryCredential = 'dockercred' 
